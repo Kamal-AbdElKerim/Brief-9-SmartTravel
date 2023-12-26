@@ -1,5 +1,7 @@
 <?php 
 
+
+
 // require_once  "../../../../Model/conn.php";
 require_once "../../../../Model/admin/model_admin_Bus.php";
 require_once "../../../../Model/admin/model_admin_Horaire.php";
@@ -98,6 +100,7 @@ class controller_horaire {
    
     }
 }
+ 
 
 
 
@@ -125,12 +128,22 @@ if (isset($_SESSION['saved_array'])) {
     $array =  $_SESSION['saved_array'] ;
 }
 
+
+
 if (isset($array)) {
 
 
 
+
+
 $filteredProducts = array_filter($data, function ($item) use ($array) {
-    return ($array["DEPART"] === $item['Ville_depart']) && ($array["ARRIVEE"] === $item['Ville_destination']);
+    if (isset($_GET["minValue"]) &&  $_GET["minValue"] !== 0 && isset($_GET["maxValue"]) &&  $_GET["maxValue"] !== 0) {
+    
+        $minValue = $_GET["minValue"] ; 
+        $maxValue = $_GET["maxValue"] ; 
+    
+    }
+    return ($array["DEPART"] === $item['Ville_depart']) && ($array["ARRIVEE"] === $item['Ville_destination'])  &&   ($minValue <= $item['price'] && $maxValue >= $item['price']);
 });
 
 $combinedData = [

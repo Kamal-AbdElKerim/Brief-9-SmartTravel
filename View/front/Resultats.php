@@ -21,7 +21,7 @@
     <div class="col-sm-3   ">
     <hr>
     <h2>Company</h2>
-<div id="data_Catégories">
+<div class=" m-3 " id="data_Catégories">
 
 
 
@@ -31,10 +31,9 @@
 
 <hr>
 <h3>Filter par price</h3>
-      <div class="form-group">
-        <input type="range" class="custom-range  " id="priceRange" min="60" max="200" step="10">
-        <!-- Display selected range value -->
-        <span class="text-success" id="selectedRange"></span>
+      <div class="form-group mt-5">
+      <input id="myRange" type="text" data-slider-min="0" data-slider-max="280" data-slider-step="1" data-slider-value="[50,280]">
+
       </div>
   <hr>
 <h2>Date</h2>
@@ -85,16 +84,11 @@
 
 
 <script>
-    // JavaScript to display selected range value
-    const priceRange = document.getElementById('priceRange');
-    const selectedRange = document.getElementById('selectedRange');
-
-    priceRange.addEventListener('input', function() {
-      selectedRange.textContent =  this.value + ' MAD' ;
-    });
+  
     <?php  include_once "View/front/Ajax_filter/affiche_card/affiche_card.js" ; ?>
 
   </script>
+
 
 
 <?php $contant =  ob_get_clean();

@@ -1,4 +1,7 @@
 
+
+
+
 function getData(tableName) {
     var result;
     let myRequest = new XMLHttpRequest();
@@ -54,7 +57,7 @@ function getData(tableName) {
                 selectedValues =  getData(selectedValues);
 
               } 
-              fetchData();
+              fetchData(0,280);
           });
         });
         
@@ -164,9 +167,9 @@ if (Array.isArray(filteredProducts.data) && filteredProducts.data.length > 0) {
   }
 }
 
-function fetchData() {
+function fetchData(minValue = 0 , maxValue = 0) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', "View/front/Ajax_filter/affiche_card/affiche_card.php", true);
+  xhr.open('GET', "View/front/Ajax_filter/affiche_card/affiche_card.php?minValue=" + minValue +  "&maxValue=" + maxValue, true);
 
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
@@ -204,5 +207,37 @@ function fetchData() {
   xhr.send();
 }
 
-fetchData();
+fetchData(0,280);
 
+
+
+  
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize the range slider
+    var myRangeSlider = new Slider('#myRange', {
+      tooltip: 'always',
+      min: 0,
+      max: 280,
+      step: 1,
+      value: [50, 280]
+    });
+
+
+    function updateSelectedRange() {
+      var values = myRangeSlider.getValue();
+
+      var minValue = values[0];
+      var maxValue = values[1];
+
+      console.log('Min Value:', minValue);
+      console.log('Max Value:', maxValue);
+       fetchData(minValue , maxValue) ;
+    }
+
+    updateSelectedRange();
+
+    myRangeSlider.on('change', function() {
+      updateSelectedRange();
+    });
+  });
