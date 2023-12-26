@@ -11,6 +11,9 @@ class controller_route {
     
         $Adminroute = new Adminroute() ; 
         $route =   $Adminroute->getAllroute() ; 
+
+        $homepage = new homepage();
+        $city =  $homepage->city() ; 
     
         include_once "View/admin/dash_route/afficheroute.php" ;
     }
@@ -20,16 +23,19 @@ class controller_route {
         extract($_POST);
    
                 $Adminroute = new Adminroute() ; 
-                $Adminroute->Insertroute($Ville_depart,$Ville_destination,$Distance,$Duree) ; 
+                $Adminroute->Insertroute($depart,$destination,$Distance,$Duree) ; 
           
 
-           header("Location: index.php?action=admin");
+       header("Location: index.php?action=route");
    
     }
     
     function controller_update()  {
         $id = $_GET['id'];
         $Adminroute = new Adminroute() ; 
+
+        $homepage = new homepage();
+        $city =  $homepage->city() ; 
 
              $data =  $Adminroute->getByIdroute($id) ; 
              require_once  'View\admin\dash_route\updateroute.php';
@@ -44,7 +50,7 @@ class controller_route {
 
              $Adminroute->deleteByIdroute($id); 
          
-             header("Location: index.php?action=admin");
+             header("Location: index.php?action=route");
        
    
     }
@@ -59,13 +65,13 @@ class controller_route {
      
                 $Adminroute = new Adminroute() ; 
 
-                $Adminroute-> Updateroute($id,$Ville_depart,$Ville_destination,$Distance,$Duree) ; 
+                $Adminroute-> Updateroute($ID,$depart,$destination,$Distance,$Duree) ; 
 
                
               
        
 
-            header("Location: index.php?action=admin");
+          header("Location: index.php?action=route");
 
 
             } 

@@ -101,8 +101,10 @@ class controller_horaire {
 
 
 
+extract($_POST);
 
-
+    
+     
 
 
 
@@ -116,22 +118,33 @@ class controller_horaire {
      
   $data =  $controller_horaire->ajaxaffiche() ; 
 
+  
+session_start(); 
+
+if (isset($_SESSION['saved_array'])) {
+    $array =  $_SESSION['saved_array'] ;
+}
+
+if (isset($array)) {
 
 
 
-//    print_r($data);
-//     print_r($Bus);
-//    print_r($Company);
-
-
+$filteredProducts = array_filter($data, function ($item) use ($array) {
+    return ($array["DEPART"] === $item['Ville_depart']) && ($array["ARRIVEE"] === $item['Ville_destination']);
+});
 
 $combinedData = [
-    'data' => $data,
+    'data' => array_values($filteredProducts), 
     'Bus' => $Bus,
     'Company' => $Company
 ];
-
-// // Convert the combined data to JSON
+}else {
+    $combinedData = [
+        'data' => $data, 
+        'Bus' => $Bus,
+        'Company' => $Company
+    ];
+}
  echo json_encode($combinedData);
 
 //    echo json_encode($data);

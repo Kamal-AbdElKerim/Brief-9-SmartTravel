@@ -5,6 +5,12 @@ include_once "Model/admin/model_admin_Company.php";
 
 class controller_Compant {
 
+    
+    function ajaxaffiche() {
+        $AdminCompany = new AdminCompany() ; 
+        $Company =   $AdminCompany->getAllCompany() ; 
+        return  $Company ;
+    }
 
     function controller_select()  {
         $AdminCompany = new AdminCompany() ; 

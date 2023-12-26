@@ -6,13 +6,11 @@ function getData(tableName) {
     myRequest.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             result = JSON.parse(this.responseText);
-            // console.log(result) ; 
         }
     }
     myRequest.send();
    return result;
 }
-
 
         let selectedValues = [];
 
@@ -75,9 +73,7 @@ function getData(tableName) {
         
         let filteredProducts = []; 
 
-const limit = 2;
-//  console.log(filteredProducts) ;
- // Initialize as an empty array to avoid 'undefined' errors
+const limit = 4;
 
 function paginateFun(number_page) {
   const tableElement = document.getElementById("data");
@@ -111,52 +107,28 @@ if (Array.isArray(filteredProducts.data) && filteredProducts.data.length > 0) {
     AllData = []; // or null or any other default value you prefer
 }
   const paginate_items = AllData.slice(start, end).map((elem) => {
-//     filteredProducts.Bus.forEach(valueBus => {
-
-//         if (elem["ID_Bus"] === valueBus["Numero_de_bus"]) {
- 
-//              Company_id =  valueBus["Company_id"] ;
-//             return true;
-//          }
-        
-//     });
-    
-
-//  let name ;
-//  let img ;
-
-//  filteredProducts.Company.forEach(valueCompany => {
-
-//     if (valueCompany["id"] ===  Company_id) {
-//         name = valueCompany["name"] ; 
-//         img = valueCompany["img"] ; 
-//         return true;
-//      }
-    
-//  });
-
 
    let Heure_arrivee = date(elem.Heure_arrivee) ;
    let  Heure_depart = date(elem.Heure_depart) ;
     return `     <div class="card mb-3">
-    <div class="card-header">
+    <div class="card-header">${elem.name}
     </div>
     
     <div class="card-body row align-items-center ">
       <div class="col-sm-3">
-      <img src="" alt="" width="150px" height="160px">
+      <img src="${elem.img}" alt="" width="150px" height="160px">
 
       </div>
      <div class="col-sm-6 row align-items-center text-center ">
 
       <div style="font-size: 20px;" class="col-sm-4 ">${Heure_arrivee} <br>
-      <label for="datepicker" class="form-label"><?= $array["DEPART"] ?></label>
+      <label for="datepicker" class="form-label">${elem.Ville_depart}</label>
     </div>
       <div class="col-sm-4    ">
         <i style="font-size: 70px;" class="fas fa-long-arrow-alt-right"></i>
         </div>
       <div style="font-size: 20px;" class="col-sm-4 ">${Heure_depart}<br>
-      <label for="datepicker" class="form-label"><?= $array["ARRIVEE"] ?></label>
+      <label for="datepicker" class="form-label">${elem.Ville_destination}</label>
 
     </div>
      </div>
@@ -198,6 +170,8 @@ function fetchData() {
 
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
+      console.log(xhr.responseText)
+
       const data = JSON.parse(xhr.responseText);
     //   const data = xhr.responseText;
 

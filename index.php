@@ -5,6 +5,7 @@
   include_once "Controller/front/Controller_homepage.php" ;
   include_once "Controller\ControllerHoraire.php" ;
   include_once "Controller\Controlleroute.php" ;
+  include_once "Controller\Controlleroute.php" ;
 
 
 
@@ -59,6 +60,18 @@
             break;
         case "route":
             $controller_route->controller_select()  ;
+            break;
+        case "destroRoot":
+            $controller_route->controller_delete()  ;
+            break;
+        case "formUpdateRoute":
+            $controller_route->controller_update()  ;
+            break;
+        case "UpdateRoute":
+            $controller_route-> controller_submet_update()  ;
+            break;
+        case "CreateRoot":
+            $controller_route->controller_insert()  ;
             break;
         case "SubmitupdateCompany":
             $controller_Compant->controller_submet_update();

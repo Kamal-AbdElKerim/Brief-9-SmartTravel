@@ -32,10 +32,11 @@
          <a class="mb-5 chose "  href="index.php?action=affichBus" >Ajouter Bus</a>
 
 
+         <a class="mb-5 chose active"  href="index.php?action=route" >Ajouter Un Route</a>
+         
+
          <a class="mb-5 chose "  href="index.php?action=Horaire" >Ajouter Un Horaire</a>
 
-
-         <a class="mb-5 chose active"  href="index.php?action=route" >Ajouter Un Route</a>
        
      
 
@@ -45,26 +46,48 @@
          </div>
           <div class="col-sm-12 form">
             <div class="row">
-              <form  method="post" enctype="multipart/form-data" action="index.php?action=CreateBus">
+              <form  method="post" enctype="multipart/form-data" action="index.php?action=CreateRoot">
               <div class="col-12 col-sm-12  p-5 row  text-start">
               <div class="mb-3 col-sm-3">
-              <label for="timeInput">Ville_depart</label>
-              <input name="Heure_depart" type="text" class="form-control" id="timeInput" name="timeInput">
+										
+										<label for="#" class="form-label">Ville_depart</label>
+
+										<select name="depart" class="form-control select2 ">
+										<option>Select City</option>
+											<?php foreach ($city as $value) { 	 ?>
+											
+										
+									
+										<option><?= $value["cityName"] ?></option>
+
+										<?php }?>
+										</select>
+								
 
               </div>
               <div class="mb-3 col-sm-3">
-              <label for="timeInput1">Ville_destination</label>
-              <input name="Heure_arrivee" type="text" class="form-control" id="timeInput1" name="timeInput">
+              <label for="#" class="form-label">Ville_destination</label>
+
+                        <select name="destination" class="form-control select2 ">
+                        <option>Select City</option>
+                          <?php foreach ($city as $value) { 	 ?>
+                          
+
+
+                        <option><?= $value["cityName"] ?></option>
+
+                        <?php }?>
+                        </select>
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="exampleFormControlInput1" class="form-label ">Distance</label>
-                <input name="Capacite" required value="" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input name="Distance" required value="" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="exampleFormControlInput1" class="form-label ">Duree</label>
-                <input name="Capacite" required value="" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input name="Duree" required value="" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
    
@@ -110,7 +133,7 @@
              
                   
                     <td >
-                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateBus&id=<?= $value['ID'] ?>">update</a>
+                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=formUpdateRoute&id=<?= $value['ID'] ?>">update</a>
 
                     <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value['ID'] ?>" data-bs-name="this horaire" href="#">delete</a>
 
@@ -166,7 +189,7 @@
             // Use the fetched 'id' to perform further actions or data retrieval
             modalTrigger.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             
-            <a class="btn btn-success mb-2 ms-2" href="index.php?action=destroBus&id=${id}">delete</a>
+            <a class="btn btn-success mb-2 ms-2" href="index.php?action=destroRoot&id=${id}">delete</a>
 `;
             body.innerHTML = `Do you want to delete : ${nom}`;
             // Set the 'data-bs-target' attribute of the modal dynamically

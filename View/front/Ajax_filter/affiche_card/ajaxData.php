@@ -41,20 +41,3 @@ if (!empty($values) && !empty($Bus)) {
 
 }
 
-// $Adminhoraire = new Adminhoraire() ; 
-// $horaire =   $Adminhoraire->getAllhoraire() ; 
-
-
-// if (!empty($horaire) && !empty($matchingBusNumbers)) {
-//   $colomfilter = []; // Initialize an array to store matching bus numbers
-  
-//   foreach ($horaire as $horaires) {
-//       if (in_array($horaires["ID_Bus"], $matchingBusNumbers)) {
-//           $colomfilter[] = $bus["Numero_de_bus"]; // Store matching bus numbers in the array
-//           // Perform additional actions if needed
-//       }
-//   }
-
-//   // Output or use the $matchingBusNumbers array
-//   print_r($colomfilter);
-// }

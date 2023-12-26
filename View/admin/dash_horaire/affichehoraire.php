@@ -1,4 +1,4 @@
-<?php ob_start(); ?>
+<?php ob_start();   ?>
 
 
 
@@ -32,10 +32,12 @@
          <a class="mb-5 chose "  href="index.php?action=affichBus" >Ajouter Bus</a>
 
 
+         <a class="mb-5 chose"  href="index.php?action=route" >Ajouter Un Route</a>
+
+         
+
          <a class="mb-5 chose active"  href="index.php?action=Horaire" >Ajouter Un Horaire</a>
 
-
-         <a class="mb-5 chose"  href="index.php?action=route" >Ajouter Un Route</a>
        
      
 
@@ -67,6 +69,7 @@
                 <input name="price" required value="" placeholder="Price..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
+              
           
    
            

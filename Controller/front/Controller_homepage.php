@@ -21,21 +21,45 @@ class Controller_homepage{
 
     function controller_form_insert()  {
         extract($_POST);
+
+    
     
               
         $Adminhoraire = new Adminhoraire() ; 
         $horaire =   $Adminhoraire->getAllhoraire() ; 
 
-        $AdminCompany = new AdminCompany() ; 
-        $Company =   $AdminCompany->getAllCompany() ; 
+        $Adminroute = new Adminroute() ; 
+        $route =   $Adminroute->getAllroute() ; 
 
-        $AdminBus = new AdminBus() ; 
-        $Bus =   $AdminBus->getAllBus() ; 
+     
+        session_start(); 
 
-             include_once 'View\front\Resultats.php' ; 
+        if (isset($DEPART) && isset($ARRIVEE) && isset($date) && isset($people)) {
+            $array = array(
+                'DEPART' => $DEPART,
+                'ARRIVEE' => $ARRIVEE,
+                'date' => $date,
+                'people' => $people
+            );
 
+           
+            $_SESSION['saved_array'] = $array;
+        } else {
+            
+            if (isset($_SESSION['saved_array'])) {
+               
+                $array = $_SESSION['saved_array'];
 
-       header("Location: index.php?action=Resultat");
+             
+            }
+        }
+      
+
+     
+
+        include_once 'View\front\Resultats.php' ; 
+        header("Location: index.php?action=Resultat");
+
    
      }
 }

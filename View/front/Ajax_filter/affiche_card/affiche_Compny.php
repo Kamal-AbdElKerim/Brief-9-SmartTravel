@@ -6,6 +6,8 @@ require_once "../../../../Model/admin/model_admin_Bus.php";
 require_once "../../../../Model/admin/model_admin_Company.php";
 
 
+
+
 class controller_Compant {
 
     function ajaxaffiche() {
@@ -115,9 +117,7 @@ $Bus =   $AdminBus->getAllBus() ;
 
   $data =  $controller_Compant->ajaxaffiche() ; 
 
-//   print_r($data);
 
-//   echo json_encode($data);
 
   $combinedData = [
     'data' => $data,

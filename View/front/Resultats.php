@@ -57,34 +57,12 @@
       </label>
     </div>
   
-    <?php
-            session_start(); 
 
-            if (isset($DEPART) && isset($ARRIVEE) && isset($date) && isset($people)) {
-                $array = array(
-                    'DEPART' => $DEPART,
-                    'ARRIVEE' => $ARRIVEE,
-                    'date' => $date,
-                    'people' => $people
-                );
-
-               
-                $_SESSION['saved_array'] = $array;
-            } else {
-                
-                if (isset($_SESSION['saved_array'])) {
-                   
-                    $array = $_SESSION['saved_array'];
-
-                 
-                }
-            }
-            ?>
 
 
     </div>
     <div class="col-sm-9  ">
-      <h5><?=  $array["DEPART"] ?> vers <?=  $array["ARRIVEE"] ?> le <?= $array["date"] ?>. pour <?= $array["people"]?>. :   <?= count($horaire) ?> résultats</h5>
+      <!-- <h5><?=  $array["DEPART"] ?> vers <?=  $array["ARRIVEE"] ?> le <?= $array["date"] ?>. pour <?= $array["people"]?>. :   <?= count($horaire) ?> résultats</h5> -->
     <!-- card -->
       
     <div id="data"></div>

@@ -14,6 +14,15 @@
    
         include_once 'View\front\home.php';
       }
+
+      function city()  {
+        
+        $consulta = $this->getConnection()->prepare("SELECT * FROM  city" );
+        $consulta->execute();
+        $resultcity = $consulta->fetchAll();
+       
+         return   $resultcity ;
+      }
   
       function Resultatspage()  {
 

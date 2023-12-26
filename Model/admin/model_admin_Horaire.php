@@ -34,7 +34,7 @@ class Adminhoraire extends Database {
     }
     public function getAllhoraireJoin(){
 
-        $consulta = $this->getConnection()->prepare("SELECT * FROM horaire INNER JOIN company ON company.id = (SELECT Company_id FROM bus WHERE bus.Numero_de_bus = horaire.ID_BUS)" );
+        $consulta = $this->getConnection()->prepare("SELECT * FROM horaire INNER JOIN company ON company.id = (SELECT Company_id FROM bus WHERE bus.Numero_de_bus = horaire.ID_BUS) INNER JOIN route ON horaire.ID_Route = route.ID;" );
         $consulta->execute();
         $resultados = $consulta->fetchAll();
  
