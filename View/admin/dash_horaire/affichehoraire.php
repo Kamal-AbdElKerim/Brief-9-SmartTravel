@@ -50,13 +50,17 @@
               <form  method="post" enctype="multipart/form-data" action="index.php?action=CreateHoraire">
               <div class="col-12 col-sm-12  p-5 row  text-start">
               <div class="mb-3 col-sm-3">
+              <label for="timeInput13">Date</label>
+              <input name="date" type="date" class="form-control" id="timeInput13">
+              </div>
+              <div class="mb-3 col-sm-3">
               <label for="timeInput">Heure_depart</label>
-              <input name="Heure_depart" type="time" class="form-control" id="timeInput" name="timeInput">
+              <input name="Heure_depart" type="time" class="form-control" id="timeInput" >
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="timeInput1">Heure_arrivee</label>
-              <input name="Heure_arrivee" type="time" class="form-control" id="timeInput1" name="timeInput">
+              <input name="Heure_arrivee" type="time" class="form-control" id="timeInput1" >
 
               </div>
               <div class="mb-3 col-sm-3">
@@ -116,6 +120,7 @@
             <table class="table table-striped table-hover " >
                 <thead >
                     <tr>
+                    <th  scope="col">Date</th>
                     <th  scope="col">Heure_depart</th>
                     <th  scope="col">Heure_arrivee</th>
                     <th  scope="col">Sieges_disponibles</th>
@@ -139,7 +144,8 @@
                  ?>  
                       
                     <tr>
-                    <td ><?=   date('H:i', strtotime($value['Heure_depart']));  ?></td>
+                    <td ><?=   $value['Date']  ?></td>     
+                    <td ><?=   date('H:i', strtotime($value['Heure_depart']));  ?></td>     
                     <th  scope="row"><?=  date('H:i', strtotime($value['Heure_arrivee'])) ?></th>
                     <td ><?= $value['Sieges_disponibles'] ?></td>
                     <td ><?= $value['price'] ?></td>

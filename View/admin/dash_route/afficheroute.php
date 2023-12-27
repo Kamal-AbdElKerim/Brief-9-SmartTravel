@@ -111,6 +111,7 @@
             <table class="table table-striped table-hover " >
                 <thead >
                     <tr>
+                    <th  scope="col">ID</th>
                     <th  scope="col">Ville_depart</th>
                     <th  scope="col">Ville_destination</th>
                     <th  scope="col">Distance</th>
@@ -126,6 +127,7 @@
 
                       
                     <tr>
+                    <td ><?=   $value['ID']  ?></td>
                     <td ><?=   $value['Ville_depart']  ?></td>
                     <th  scope="row"><?=    $value['Ville_destination']  ?></th>
                     <td ><?= $value['Distance'] ?></td>

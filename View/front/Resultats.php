@@ -38,19 +38,19 @@
   <hr>
 <h2>Date</h2>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault12" checked>
+      <input value="All" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault12" checked>
       <label class="form-check-label" for="flexRadioDefault12">
         All
       </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+      <input value="morning" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
       <label class="form-check-label" for="flexRadioDefault1">
         Date in morning
       </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+      <input value="evening" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
       <label class="form-check-label" for="flexRadioDefault2">
         Date in evening
       </label>
@@ -61,11 +61,14 @@
 
     </div>
     <div class="col-sm-9  ">
-      <!-- <h5><?=  $array["DEPART"] ?> vers <?=  $array["ARRIVEE"] ?> le <?= $array["date"] ?>. pour <?= $array["people"]?>. :   <?= count($horaire) ?> résultats</h5> -->
-    <!-- card -->
+      <div class=" mb-3 ">
+      <h5 ><?=  $array["DEPART"] ?> vers <?=  $array["ARRIVEE"] ?> le <?= $array["date"] ?>. pour <?= $array["people"]?>. 
+    <!-- card --></div>
       
-    <div id="data"></div>
-     
+    <div id="data">
+
+    </div>
+
 
       <!-- end card -->
     
@@ -86,8 +89,11 @@
 <script>
   
     <?php  include_once "View/front/Ajax_filter/affiche_card/affiche_card.js" ; ?>
+    
 
   </script>
+
+
 
 
 

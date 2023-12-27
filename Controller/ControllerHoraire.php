@@ -25,7 +25,7 @@ class controller_horaire {
         extract($_POST);
    
                 $Adminhoraire = new Adminhoraire() ; 
-                $Adminhoraire->Inserthoraire($Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
+                $Adminhoraire->Inserthoraire($date,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
           
 
           header("Location: index.php?action=Horaire");
@@ -76,13 +76,13 @@ class controller_horaire {
      
                 $Adminhoraire = new Adminhoraire() ; 
 
-                $Adminhoraire->Updatehoraire($id,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
+                $Adminhoraire->Updatehoraire($id,$date,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
 
                
               
        
 
-                header("Location: index.php?action=Horaire");
+                 header("Location: index.php?action=Horaire");
 
 
             } 

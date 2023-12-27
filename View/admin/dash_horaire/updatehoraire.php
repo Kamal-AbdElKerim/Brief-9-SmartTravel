@@ -48,6 +48,11 @@
               <form  method="post" enctype="multipart/form-data" action="index.php?action=UpdateHoraire_submet">
               <div class="col-12 col-sm-12  p-5 row  text-start">
               <div class="mb-3 col-sm-3">
+              <label for="timeInput13">Date</label>
+              <input value="<?=  $data[0]["Date"] ?>" name="date" type="date" class="form-control" id="timeInput13">
+
+              </div>
+              <div class="mb-3 col-sm-3">
               <label for="timeInput">Heure_depart</label>
               <input value="<?=  $data[0]["Heure_depart"] ?>" name="Heure_depart" type="time" class="form-control" id="timeInput">
 
@@ -59,7 +64,7 @@
               </div>
               <div class="mb-3 col-sm-3">
               <label for="timeInput1">Heure_arrivee</label>
-              <input value="<?=  $data[0]["Heure_arrivee"] ?>" name="Heure_arrivee" type="time" class="form-control" id="timeInput1" name="timeInput">
+              <input value="<?=  $data[0]["Heure_arrivee"] ?>" name="Heure_arrivee" type="time" class="form-control" id="timeInput1">
 
               </div>
               <div class="mb-3 col-sm-3">

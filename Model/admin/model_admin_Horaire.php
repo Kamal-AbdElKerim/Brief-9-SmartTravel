@@ -11,6 +11,7 @@ class Adminhoraire extends Database {
 
   
  private $ID ; 
+ private $Date ; 
  private $Heure_depart ; 
  private $Heure_arrivee ; 
  private $Sieges_disponibles ; 
@@ -34,7 +35,7 @@ class Adminhoraire extends Database {
     }
     public function getAllhoraireJoin(){
 
-        $consulta = $this->getConnection()->prepare("SELECT * FROM horaire INNER JOIN company ON company.id = (SELECT Company_id FROM bus WHERE bus.Numero_de_bus = horaire.ID_BUS) INNER JOIN route ON horaire.ID_Route = route.ID;" );
+        $consulta = $this->getConnection()->prepare("SELECT * FROM horaire INNER JOIN company ON company.id = (SELECT Company_id FROM bus WHERE bus.Numero_de_bus = horaire.ID_BUS) INNER JOIN route ON horaire.ID_Route = route.ID ORDER BY Heure_depart ASC ;" );
         $consulta->execute();
         $resultados = $consulta->fetchAll();
  
@@ -97,11 +98,12 @@ class Adminhoraire extends Database {
     }
 
 
-    public function Inserthoraire($Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price){
+    public function Inserthoraire($Date,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price){
 
-        $consulta = $this->getConnection()->prepare("INSERT INTO horaire(Heure_depart,Heure_arrivee,Sieges_disponibles,ID_Bus,ID_Route,price)
-                                        VALUES (:Heure_depart,:Heure_arrivee,:Sieges_disponibles,:ID_Bus,:ID_Route,:price)");
+        $consulta = $this->getConnection()->prepare("INSERT INTO horaire(Date,Heure_depart,Heure_arrivee,Sieges_disponibles,ID_Bus,ID_Route,price)
+                                        VALUES (:Date,:Heure_depart,:Heure_arrivee,:Sieges_disponibles,:ID_Bus,:ID_Route,:price)");
         $result = $consulta->execute(array(
+            "Date" => $Date,
             "Heure_depart" => $Heure_depart,
             "Heure_arrivee" => $Heure_arrivee,
             "Sieges_disponibles" => $Sieges_disponibles,
@@ -114,11 +116,12 @@ class Adminhoraire extends Database {
         return $result; 
     }
 
-    public function Updatehoraire($id,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) {
+    public function Updatehoraire($id,$Date,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) {
         try {
             $consulta = $this->getConnection()->prepare("
                 UPDATE horaire 
                 SET 
+                    Date = :Date,  
                     Heure_depart = :Heure_depart,  
                     Heure_arrivee = :Heure_arrivee,
                     Sieges_disponibles = :Sieges_disponibles,
@@ -129,6 +132,7 @@ class Adminhoraire extends Database {
             ");
     
             $resultado = $consulta->execute(array(
+                "Date" => $Date,
                 "Heure_depart" => $Heure_depart,
                 "Heure_arrivee" => $Heure_arrivee,
                 "Sieges_disponibles" => $Sieges_disponibles,

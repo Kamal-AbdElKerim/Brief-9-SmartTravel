@@ -33,7 +33,7 @@ class controller_horaire {
         extract($_POST);
    
                 $Adminhoraire = new Adminhoraire() ; 
-                $Adminhoraire->Inserthoraire($Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
+                $Adminhoraire->Inserthoraire($Date,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
           
 
           header("Location: index.php?action=Horaire");
@@ -84,7 +84,7 @@ class controller_horaire {
      
                 $Adminhoraire = new Adminhoraire() ; 
 
-                $Adminhoraire->Updatehoraire($id,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
+                $Adminhoraire->Updatehoraire($id,$Date,$Heure_depart,$Heure_arrivee,$Sieges_disponibles,$ID_Bus,$ID_Route,$price) ; 
 
                
               
@@ -132,18 +132,33 @@ if (isset($_SESSION['saved_array'])) {
 
 if (isset($array)) {
 
+    if (isset($_GET["days"])) {
+        $days = $_GET["days"] ; 
+        
+     
+         if ($days === "All") {
+            $timeStart = "00:00";
+            $timeEnd = "23:59";
+        } elseif ($days === "morning") {
+            $timeStart = "06:00";
+            $timeEnd = "11:59";
+        } elseif ($days === "evening") {
+            $timeStart = "12:00";
+            $timeEnd = "23:59";
+        }
+     }
 
 
 
+$filteredProducts = array_filter($data, function ($item) use ($timeStart,$timeEnd,$array) {
 
-$filteredProducts = array_filter($data, function ($item) use ($array) {
     if (isset($_GET["minValue"]) &&  $_GET["minValue"] !== 0 && isset($_GET["maxValue"]) &&  $_GET["maxValue"] !== 0) {
     
         $minValue = $_GET["minValue"] ; 
         $maxValue = $_GET["maxValue"] ; 
     
     }
-    return ($array["DEPART"] === $item['Ville_depart']) && ($array["ARRIVEE"] === $item['Ville_destination'])  &&   ($minValue <= $item['price'] && $maxValue >= $item['price']);
+    return ($timeStart <= $item['Heure_depart']) && ($timeEnd >= $item['Heure_depart'])  && ($array["date"] === $item['Date']) &&  ($array["DEPART"] === $item['Ville_depart']) && ($array["ARRIVEE"] === $item['Ville_destination'])  &&   ($minValue <= $item['price'] && $maxValue >= $item['price']);
 });
 
 $combinedData = [

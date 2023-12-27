@@ -20,7 +20,8 @@
 										
 										<label for="#" class="form-label">DÉPART</label>
 
-										<select name="DEPART" class="form-control select2 ">
+										<select required name="DEPART" class="form-control select2 ">
+							
 										<option>Select City</option>
 											<?php foreach ($resultcity as $value) { 	 ?>
 											
@@ -39,7 +40,7 @@
 										<label for="#" class="form-label">ARRIVÉE</label>
 
 											
-										<select name="ARRIVEE" class="form-control select2 ">
+										<select required name="ARRIVEE" class="form-control select2 ">
 										<option>Select City</option>
 											<?php foreach ($resultcity as $value) { 	 ?>
 											
@@ -54,13 +55,14 @@
 										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
 										<div class="mb-3">
 											<label for="datepicker" class="form-label">Select Date:</label>
-											<input name="date" type="date" class="form-control" id="datepicker">
+											<input name="date" required type="date" class="form-control" id="datepicker">
 										</div>											
 										</div>
 										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
 										<label for="datepicker" class="form-label">The number of people</label>
 
-									<select name="people" class="form-control select2 ">
+									<select required name="people" class="form-control select2 ">
+										
 										<option selected>1 people</option>
 										<option>2 people</option>
 										<option>3 people</option>
@@ -83,7 +85,7 @@
 										<label style="visibility: hidden;" for="datepicker" class="form-label">12</label>
 
 										
-											<input name="submit" type="submit" class="btn btn-primary btn-block" value="Search">
+											<input required name="submit" type="submit" class="btn btn-primary btn-block" value="Search">
 										</div>
 									
 

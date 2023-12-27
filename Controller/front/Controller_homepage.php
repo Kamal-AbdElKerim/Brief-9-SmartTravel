@@ -34,6 +34,8 @@ class Controller_homepage{
      
         session_start(); 
 
+      
+
         if (isset($DEPART) && isset($ARRIVEE) && isset($date) && isset($people)) {
             $array = array(
                 'DEPART' => $DEPART,

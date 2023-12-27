@@ -30,7 +30,6 @@ function getData(tableName) {
         
         // Create an HTML string to store the checkbox list
         let htmlString = '';
-        let Numero_de_bus ;
         
         // Iterate through the data array and build the HTML string
         data.data.forEach(element => {
@@ -55,9 +54,10 @@ function getData(tableName) {
             //   console.log(selectedValues);
               if (selectedValues.length > 0 ) {
                 selectedValues =  getData(selectedValues);
+                console.log(selectedValues) ; 
 
               } 
-              fetchData(0,280);
+              fetchData(0,280,"All");
           });
         });
         
@@ -76,7 +76,7 @@ function getData(tableName) {
         
         let filteredProducts = []; 
 
-const limit = 4;
+const limit = 3;
 
 function paginateFun(number_page) {
   const tableElement = document.getElementById("data");
@@ -109,6 +109,8 @@ if (Array.isArray(filteredProducts.data) && filteredProducts.data.length > 0) {
     // Handle the case when neither condition is met
     AllData = []; // or null or any other default value you prefer
 }
+
+
   const paginate_items = AllData.slice(start, end).map((elem) => {
 
    let Heure_arrivee = date(elem.Heure_arrivee) ;
@@ -124,13 +126,13 @@ if (Array.isArray(filteredProducts.data) && filteredProducts.data.length > 0) {
       </div>
      <div class="col-sm-6 row align-items-center text-center ">
 
-      <div style="font-size: 20px;" class="col-sm-4 ">${Heure_arrivee} <br>
+      <div style="font-size: 20px;" class="col-sm-4 ">${Heure_depart} <br>
       <label for="datepicker" class="form-label">${elem.Ville_depart}</label>
     </div>
       <div class="col-sm-4    ">
         <i style="font-size: 70px;" class="fas fa-long-arrow-alt-right"></i>
         </div>
-      <div style="font-size: 20px;" class="col-sm-4 ">${Heure_depart}<br>
+      <div style="font-size: 20px;" class="col-sm-4 ">${Heure_arrivee}<br>
       <label for="datepicker" class="form-label">${elem.Ville_destination}</label>
 
     </div>
@@ -147,6 +149,23 @@ if (Array.isArray(filteredProducts.data) && filteredProducts.data.length > 0) {
   });
 
   tableElement.innerHTML = paginate_items.join("");
+  if (AllData.length == 0 ) {
+    tableElement.innerHTML = `
+    <div class="  d-flex justify-content-end align-items-center">
+    <div class="text-center">
+        <div style="width: 60%; margin:"auto;" >
+            <img src="https://ae01.alicdn.com/kf/S08ffda4d4a674d19a6217edf2cf66973l/Bad-Notice-Chest-Bags-Women-Error-404-File-Not-Found-Travel-Shoulder-Bag-Casual-Print-Small.jpg_960x960.jpg" width="520px" height="300px" alt="" class="img-fluid">
+        </div>
+        <div class="mt-5" style="width: 60%; margin:"auto;"">
+            <p class="fs-3"><span class="text-danger">Oops!</span> Aucun voyage trouvé.</p>
+          
+            <a href="index.php" class="btn btn-primary">Go Home</a>
+        </div>
+    </div>
+</div>
+
+    ` ; 
+  }
 
   const buttons = [...Array(Math.ceil(AllData.length / limit)).keys()].map((elem) => {
     return `<li class="page-item">
@@ -167,13 +186,13 @@ if (Array.isArray(filteredProducts.data) && filteredProducts.data.length > 0) {
   }
 }
 
-function fetchData(minValue = 0 , maxValue = 0) {
+function fetchData(minValue = 0 , maxValue = 0 , days) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', "View/front/Ajax_filter/affiche_card/affiche_card.php?minValue=" + minValue +  "&maxValue=" + maxValue, true);
+  xhr.open('GET', "View/front/Ajax_filter/affiche_card/affiche_card.php?minValue=" + minValue +  "&maxValue=" + maxValue + "&days=" + days, true);
 
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
-      console.log(xhr.responseText)
+      // console.log(xhr.responseText)
 
       const data = JSON.parse(xhr.responseText);
     //   const data = xhr.responseText;
@@ -207,7 +226,7 @@ function fetchData(minValue = 0 , maxValue = 0) {
   xhr.send();
 }
 
-fetchData(0,280);
+fetchData(0,280 , "All");
 
 
 
@@ -230,14 +249,30 @@ fetchData(0,280);
       var minValue = values[0];
       var maxValue = values[1];
 
-      console.log('Min Value:', minValue);
-      console.log('Max Value:', maxValue);
-       fetchData(minValue , maxValue) ;
+      // console.log('Min Value:', minValue);
+      // console.log('Max Value:', maxValue);
+       fetchData(minValue , maxValue , "All") ;
     }
 
     updateSelectedRange();
 
     myRangeSlider.on('change', function() {
       updateSelectedRange();
+    });
+  });
+
+
+  
+  // Get all radio buttons
+  const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
+
+  // Add change event listener to each radio button
+  radioButtons.forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+      if (event.target.checked) {
+       let dayes = event.target.value ;
+       console.log(dayes) ; 
+       fetchData(0 , 280 ,dayes) ;
+      }
     });
   });
