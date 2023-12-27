@@ -20,14 +20,14 @@
 										
 										<label for="#" class="form-label">DÉPART</label>
 
-										<select required name="DEPART" class="form-control select2 ">
+										<select required name="DEPART" class="form-control select2 " id="cityDropdown">
 							
 										<option>Select City</option>
 											<?php foreach ($resultcity as $value) { 	 ?>
 											
 										
 									
-										<option><?= $value["cityName"] ?></option>
+										<option value="<?= $value["cityName"] ?>"><?= $value["cityName"] ?></option>
 
 										<?php }?>
 										</select>
@@ -40,15 +40,9 @@
 										<label for="#" class="form-label">ARRIVÉE</label>
 
 											
-										<select required name="ARRIVEE" class="form-control select2 ">
-										<option>Select City</option>
-											<?php foreach ($resultcity as $value) { 	 ?>
-											
+										<select id="select_city" required name="ARRIVEE" class="form-control select2 " >
+										<option >Select City</option>
 										
-									
-										<option><?= $value["cityName"] ?></option>
-
-										<?php }?>
 										</select>
 										</div>
 								
@@ -209,8 +203,41 @@
 		</div>
 	</div>
 
+	<script>
+		function ncityValueame(cityValue) {
+						// Create a new XMLHttpRequest object
 
+						var xhttp = new XMLHttpRequest();
+
+						// Define a function to handle the response
+						xhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							// console.log(this.responseText); 
+							var selectElement  =  document.getElementById("select_city") ;
+							selectElement.innerHTML = this.responseText
+						}
+						};
+
+						// Open a connection to the server
+						xhttp.open("GET", "View/front/Ajax_filter/cityValue.php?cityValue=" + cityValue, true);
+
+						// Send the request to the server
+						xhttp.send();
+		}
+	</script>
+
+	<script>
+    // JavaScript code to capture the selected value
+    document.getElementById('cityDropdown').addEventListener('change', function() {
+        var cityValue = this.value;
+        console.log('Selected value:', cityValue);
+		ncityValueame(cityValue);
 	
+
+    });
+
+
+</script>
 
 
     <?php $contant =  ob_get_clean();

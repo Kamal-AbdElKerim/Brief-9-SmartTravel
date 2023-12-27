@@ -10,6 +10,13 @@ class Controller_homepage{
         return $homepage->homepage() ; 
 
     }
+
+    function citys() {
+        
+        $homepage = new homepage();
+        return $homepage->city() ; 
+
+    }
     function afficheResultat() {
 
 
