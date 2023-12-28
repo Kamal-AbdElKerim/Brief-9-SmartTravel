@@ -26,7 +26,7 @@
   
       function Resultatspage()  {
 
-
+    
         
         include_once 'View\front\Resultats.php';
       }

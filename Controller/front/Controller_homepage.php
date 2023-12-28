@@ -62,12 +62,14 @@ class Controller_homepage{
              
             }
         }
-      
+
+        $homepage = new homepage();
+       $resultcity =  $homepage->city() ; 
 
      
 
         include_once 'View\front\Resultats.php' ; 
-        header("Location: index.php?action=Resultat");
+        // header("Location: index.php?action=Resultat");
 
    
      }

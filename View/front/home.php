@@ -203,41 +203,6 @@
 		</div>
 	</div>
 
-	<script>
-		function ncityValueame(cityValue) {
-						// Create a new XMLHttpRequest object
-
-						var xhttp = new XMLHttpRequest();
-
-						// Define a function to handle the response
-						xhttp.onreadystatechange = function() {
-						if (this.readyState == 4 && this.status == 200) {
-							// console.log(this.responseText); 
-							var selectElement  =  document.getElementById("select_city") ;
-							selectElement.innerHTML = this.responseText
-						}
-						};
-
-						// Open a connection to the server
-						xhttp.open("GET", "View/front/Ajax_filter/cityValue.php?cityValue=" + cityValue, true);
-
-						// Send the request to the server
-						xhttp.send();
-		}
-	</script>
-
-	<script>
-    // JavaScript code to capture the selected value
-    document.getElementById('cityDropdown').addEventListener('change', function() {
-        var cityValue = this.value;
-        console.log('Selected value:', cityValue);
-		ncityValueame(cityValue);
-	
-
-    });
-
-
-</script>
 
 
     <?php $contant =  ob_get_clean();

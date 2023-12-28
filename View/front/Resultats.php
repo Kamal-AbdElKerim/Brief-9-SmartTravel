@@ -4,10 +4,131 @@
 <div class="hero hero-inner">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-lg-6 mx-auto text-center">
+      <div class="col-lg-7 mx-auto text-center">
         <div class="intro-wrap">
           <div class="intro-wrap">
 						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Travel In <span class="typed-words"></span></h1>
+
+            <div class="row">
+							<div class="col-12">
+
+
+								<form class="form" method="post"  action="index.php?action=Saveform">
+									<div class="row mb-2">
+										<div class="col-sm-12 col-md-6 mb-5 mb-lg-0 col-lg-4">
+										
+										<label for="#" class="form-label">DÉPART</label>
+
+										<select required name="DEPART" class="form-control select2 " id="cityDropdown">
+							
+										<option>Select City</option>
+											<?php foreach ($resultcity as $value) { 	
+												if (isset($_SESSION['saved_array'])) {
+													$array =  $_SESSION['saved_array'] ;
+													if ($value["cityName"] ===  $array["DEPART"]) {
+
+														
+													
+											
+												?>
+									<option selected value="<?= $array["DEPART"] ?>"><?= $array["DEPART"] ?></option>
+
+
+												<?php continue; }	} ?>
+											
+										
+									
+										<option value="<?= $value["cityName"] ?>"><?= $value["cityName"] ?></option>
+
+										<?php }?>
+										</select>
+								
+										</div>
+										
+     
+								
+										<div class="col-sm-12 col-md-6 mb-5 mb-lg-0 col-lg-4">
+										<label for="#" class="form-label">ARRIVÉE</label>
+
+											
+										<select id="select_city" required name="ARRIVEE" class="form-control select2 " >
+										<option >Select City</option>
+										<?php 	
+												if (isset($_SESSION['saved_array'])) {
+													$array =  $_SESSION['saved_array'] ;
+											
+												?>
+									<option selected value="<?= $array["ARRIVEE"] ?>"><?= $array["ARRIVEE"] ?></option>
+
+
+												<?php 	} ?>
+										
+										</select>
+										</div>
+								
+										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+										<div class="mb-3">
+											<label for="datepicker" class="form-label">Select Date:</label>
+											<?php 	
+												if (isset($_SESSION['saved_array'])) {
+													$array =  $_SESSION['saved_array'] ;
+											
+												?>
+
+                                     <input value="<?= $array["date"] ?>" name="date" required type="date" class="form-control" id="datepicker">
+
+												<?php 	} ?>
+											
+										</div>											
+										</div>
+										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+										<label for="datepicker" class="form-label">The number of people</label>
+
+									<select required name="people" class="form-control select2 ">
+									<?php 	
+												if (isset($_SESSION['saved_array'])) {
+													$array =  $_SESSION['saved_array'] ;
+											
+												?>
+										<option selected><?= $array["people"] ?></option>
+
+
+												<?php 	} ?>
+										
+										<option >1 people</option>
+										<option>2 people</option>
+										<option>3 people</option>
+										<option>4 people</option>
+										<option>5 people</option>
+										<option>6 people</option>
+										</select>
+										</div>
+										<div class="col-lg-4">
+										<label style="visibility: hidden;" for="datepicker" class="form-label">12</label>
+
+											<label class="control control--checkbox mt-3">
+												<span class="caption">Save this search</span>
+												<input type="checkbox" checked="checked" />
+												<div class="control__indicator"></div>
+											</label>
+										</div>
+
+										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+										<label style="visibility: hidden;" for="datepicker" class="form-label">12</label>
+
+										
+											<input required name="submit" type="submit" class="btn btn-primary btn-block" value="Search">
+										</div>
+									
+
+									</div> 
+								   
+								
+								</form>
+
+
+							</div>
+						</div>
 
 			
 					</div>        </div>
