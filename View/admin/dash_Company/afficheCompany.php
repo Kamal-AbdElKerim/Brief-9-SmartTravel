@@ -94,14 +94,14 @@
                     
                  
                     <tr>
-                    <td ><img src="<?= $value['img'] ?>" alt="" width="150px" height="154px"></td>
-                    <th  scope="row"><?= $value['name'] ?></th>
-                    <td ><?= $value['Bio'] ?></td>
+                    <td ><img src="<?= $value->getimg() ?>" alt="" width="150px" height="154px"></td>
+                    <th  scope="row"><?= $value->getName()  ?></th>
+                    <td ><?= $value->getBio() ?></td>
                   
                     <td >
-                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateCompany&id=<?= $value['id'] ?>">update</a>
+                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateCompany&id=<?= $value->getId() ?>">update</a>
 
-                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value['id'] ?>" data-bs-name="<?= $value['name'] ?>" href="#">delete</a>
+                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value->getId() ?>" data-bs-name="<?= $value->getName()  ?>" href="#">delete</a>
 
                     </td>
                     </tr>

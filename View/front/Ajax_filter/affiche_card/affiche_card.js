@@ -9,6 +9,7 @@ function getData(tableName) {
     myRequest.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             result = JSON.parse(this.responseText);
+
         }
     }
     myRequest.send();
@@ -22,7 +23,8 @@ function getData(tableName) {
         
         xhr.onload = function() {
           if (xhr.status >= 200 && xhr.status < 300) {
-            const data = JSON.parse(xhr.responseText);
+          const data = JSON.parse(xhr.responseText);
+            console.log(xhr.responseText)
 
             // console.log( data)
          
@@ -51,10 +53,10 @@ function getData(tableName) {
         checkboxes.forEach(checkbox => {
           checkbox.addEventListener('change', function() {
               selectedValues = Array.from(document.querySelectorAll('.min:checked')).map(cb => cb.value);
-            //   console.log(selectedValues);
+         console.log(selectedValues);
               if (selectedValues.length > 0 ) {
                 selectedValues =  getData(selectedValues);
-                console.log(selectedValues) ; 
+              
 
               } 
               fetchData(0,280,"All");
@@ -192,14 +194,14 @@ function fetchData(minValue = 0 , maxValue = 0 , days) {
 
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
-      // console.log(xhr.responseText)
+
 
       const data = JSON.parse(xhr.responseText);
     //   const data = xhr.responseText;
 
       // Update filteredProducts with fetched data
     filteredProducts = data;
-   console.log(filteredProducts) ;
+  //  console.log(filteredProducts) ;
 
       if (selectedValues.length > 0) {
         const selectedValuesIds = selectedValues.map(id => parseInt(id));

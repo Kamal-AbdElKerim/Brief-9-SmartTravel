@@ -84,7 +84,7 @@
                 <option value="null" selected>Choose Bus</option>
                 <?php foreach ($Bus as  $value) {    ;?>
 
-                <option value="<?=  $value['Numero_de_bus'] ?>"><?= $value['busNumber'] ?></option>
+                <option value="<?=  $value->getNumero_de_bus() ?>"><?= $value->getBusNumber() ?></option>
                
                 <?php   }  ?>
               </select>
@@ -95,7 +95,7 @@
                 <option value="null" selected>Choose route</option>
                 <?php foreach ($route as  $value) {    ;?>
 
-                <option value="<?=  $value['ID'] ?>"><?= $value['ID'] ?></option>
+                <option value="<?=  $value->getID() ?>"><?= $value->getID() ?></option>
                
                 <?php   }  ?>
               </select>
@@ -136,26 +136,26 @@
                   <?php foreach ($horaire as  $value) {   ?>
                     <?php
                     foreach ($Bus as $value1) {
-                      if ($value1["Numero_de_bus"] === $value['ID_Bus']) {
-                         $nameBus = $value1["busNumber"] ; 
+                      if ($value1->getNumero_de_bus() === $value->getID_Bus()) {
+                         $nameBus = $value1->getBusNumber() ; 
                          break ;
                       }
                     } 
                  ?>  
                       
                     <tr>
-                    <td ><?=   $value['Date']  ?></td>     
-                    <td ><?=   date('H:i', strtotime($value['Heure_depart']));  ?></td>     
-                    <th  scope="row"><?=  date('H:i', strtotime($value['Heure_arrivee'])) ?></th>
-                    <td ><?= $value['Sieges_disponibles'] ?></td>
-                    <td ><?= $value['price'] ?></td>
+                    <td ><?=   $value->getDate() ?></td>     
+                    <td ><?=   date('H:i', strtotime($value->getHeure_depart()));  ?></td>     
+                    <th  scope="row"><?=  date('H:i', strtotime($value->getHeure_arrivee())) ?></th>
+                    <td ><?= $value->getSieges_disponibles() ?></td>
+                    <td ><?= $value->getPrice() ?></td>
                     <td ><?= $nameBus ?></td>
-                    <td ><?= $value['ID_Route'] ?></td>
+                    <td ><?= $value->getID_Route() ?></td>
                   
                     <td >
-                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateHoraire&id=<?= $value['ID'] ?>">update</a>
+                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateHoraire&id=<?= $value->getID() ?>">update</a>
 
-                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value['ID'] ?>" data-bs-name="this horaire" href="#">delete</a>
+                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value->getID() ?>" data-bs-name="this horaire" href="#">delete</a>
 
                     </td>
                     </tr>

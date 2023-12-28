@@ -67,7 +67,7 @@
                 <option value="null" selected>Choose Company</option>
                 <?php foreach ($Company as  $value) {    ;?>
 
-                <option value="<?=  $value['id'] ?>"><?= $value['name'] ?></option>
+                <option value="<?=  $value->getId() ?>"><?= $value->getName()  ?></option>
                
                 <?php   }  ?>
               </select>
@@ -104,23 +104,23 @@
                   <?php foreach ($Bus as  $value) {   ?>
                     <?php
                     foreach ($Company as $value1) {
-                      if ($value1["id"] === $value['Company_id']) {
-                         $namecompany = $value1["name"] ; 
+                      if ($value1->getId() === $value->getCompany_id()) {
+                         $namecompany = $value1->getName() ; 
                          break ;
                       }
                     }
                  ?>
                  
                     <tr>
-                    <td ><?= $value['busNumber'] ?></td>
-                    <th  scope="row"><?= $value['Plaque_immatriculation'] ?></th>
-                    <td ><?= $value['Capacite'] ?></td>
+                    <td ><?= $value->getBusNumber() ?></td>
+                    <th  scope="row"><?= $value->getPlaque_immatriculation() ?></th>
+                    <td ><?= $value->getCapacite() ?></td>
                     <td ><?= $namecompany ?></td>
                   
                     <td >
-                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateBus&id=<?= $value['Numero_de_bus'] ?>">update</a>
+                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateBus&id=<?= $value->getNumero_de_bus() ?>">update</a>
 
-                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value['Numero_de_bus'] ?>" data-bs-name="<?= $value['busNumber'] ?>" href="#">delete</a>
+                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value->getNumero_de_bus()?>" data-bs-name="<?= $value->getBusNumber() ?>" href="#">delete</a>
 
                     </td>
                     </tr>

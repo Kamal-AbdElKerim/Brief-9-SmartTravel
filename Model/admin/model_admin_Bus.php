@@ -29,16 +29,6 @@ class Database {
 
 class AdminBus extends Database {
 
-  
- private $Numero_de_bus ; 
- private $busNumber ; 
- private $Plaque_immatriculation ; 
- private $Capacite ; 
- private $bus_id ; 
-
-
-
-
 
 
     public function getAllbus(){
@@ -46,8 +36,13 @@ class AdminBus extends Database {
         $consulta = $this->getConnection()->prepare("SELECT * FROM  bus" );
         $consulta->execute();
         $resultados = $consulta->fetchAll();
+
+        $Bus = array(); 
+        foreach ($resultados as $B) {
+            $Bus[] = new admin_bus($B["Numero_de_bus"],$B["busNumber"],$B["Plaque_immatriculation"], $B["Capacite"],$B["Company_id"]);
+        }
+        return $Bus;
        
-        return $resultados;
 
     }
 
@@ -59,9 +54,15 @@ class AdminBus extends Database {
             "id" => $id
         ));
         /* Fetch all of the remaining rows in the result set */
-        $resultados = $consulta->fetchAll();
+        $resultados = $consulta->fetch();
+
+        
+        $Bus = array(); 
        
-        return $resultados;
+            $Bus[] = new admin_bus($resultados["Numero_de_bus"],$resultados["busNumber"],$resultados["Plaque_immatriculation"], $resultados["Capacite"],$resultados["Company_id"]);
+  
+        return $Bus;
+       
     }
     
     public function getByColumnbus($column,$value){

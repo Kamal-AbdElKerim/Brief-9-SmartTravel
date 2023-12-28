@@ -1,5 +1,4 @@
 <?php
-//  include_once "Model/conn.php" ; 
 
 
 
@@ -8,26 +7,19 @@
 
 class Adminroute extends Database {
 
-  
- private $ID ; 
- private $Ville_depart ; 
- private $Ville_destination ; 
- private $Distance ; 
- private $Duree ; 
-
-
-
-
-
-
 
     public function getAllroute(){
 
         $consulta = $this->getConnection()->prepare("SELECT * FROM  route" );
         $consulta->execute();
         $resultados = $consulta->fetchAll();
-       
-        return $resultados;
+
+            $Company = array(); 
+        foreach ($resultados as $B) { 
+
+            $Company[] = new admin_route($B["ID"],$B["Ville_depart"],$B["Ville_destination"], $B["Distance"] , $B["Duree"] , $B["city_ID"] );
+        }
+        return $Company;
 
     }
 
@@ -39,9 +31,13 @@ class Adminroute extends Database {
             "id" => $id
         ));
         /* Fetch all of the remaining rows in the result set */
-        $resultados = $consulta->fetchAll();
+        $resultados = $consulta->fetch();
        
-        return $resultados;
+        $Company = array(); 
+    
+            $Company[] = new admin_route($resultados["ID"],$resultados["Ville_depart"],$resultados["Ville_destination"], $resultados["Distance"] , $resultados["Duree"] , $resultados["city_ID"] );
+     
+        return $Company;
     }
     
     public function getByColumnroute($column,$value){
@@ -50,9 +46,13 @@ class Adminroute extends Database {
         $consulta->execute(array(
             "value" => $value
         ));
-        $resultados = $consulta->fetchAll();
+        $resultados = $consulta->fetch();
        
-        return $resultados;
+        $Company = array(); 
+    
+        $Company[] = new admin_route($resultados["ID"],$resultados["Ville_depart"],$resultados["Ville_destination"], $resultados["Distance"] , $resultados["Duree"] , $resultados["city_ID"] );
+ 
+    return $Company;
     }
     
     public function deleteByIdroute($id){

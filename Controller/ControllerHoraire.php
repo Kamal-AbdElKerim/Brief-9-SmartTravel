@@ -43,6 +43,7 @@ class controller_horaire {
         
 
              $data =  $Adminhoraire->getByIdhoraire($id) ; 
+          
              require_once  'View\admin\dash_horaire\updatehoraire.php';
 
        

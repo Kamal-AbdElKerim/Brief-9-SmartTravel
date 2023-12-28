@@ -49,51 +49,51 @@
               <div class="col-12 col-sm-12  p-5 row  text-start">
               <div class="mb-3 col-sm-3">
               <label for="timeInput13">Date</label>
-              <input value="<?=  $data[0]["Date"] ?>" name="date" type="date" class="form-control" id="timeInput13">
+              <input value="<?=  $data[0]->getDate() ?>" name="date" type="date" class="form-control" id="timeInput13">
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="timeInput">Heure_depart</label>
-              <input value="<?=  $data[0]["Heure_depart"] ?>" name="Heure_depart" type="time" class="form-control" id="timeInput">
+              <input value="<?=  $data[0]->getHeure_depart() ?>" name="Heure_depart" type="time" class="form-control" id="timeInput">
 
               </div>
               <div class="mb-3 col-sm-3" style="display: none;">
               <label for="timeInput">Heure_depart</label>
-              <input value="<?=  $data[0]["ID"] ?>" name="id" type="text" class="form-control" id="timeInput" >
+              <input value="<?=  $data[0]->getId() ?>" name="id" type="text" class="form-control" id="timeInput" >
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="timeInput1">Heure_arrivee</label>
-              <input value="<?=  $data[0]["Heure_arrivee"] ?>" name="Heure_arrivee" type="time" class="form-control" id="timeInput1">
+              <input value="<?=  $data[0]->getHeure_arrivee() ?>" name="Heure_arrivee" type="time" class="form-control" id="timeInput1">
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="exampleFormControlInput1" class="form-label ">Sieges_disponibles</label>
-                <input value="<?=  $data[0]["Sieges_disponibles"] ?>" name="Sieges_disponibles" required  placeholder="Sieges_disponibles..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input value="<?=  $data[0]->getSieges_disponibles() ?>" name="Sieges_disponibles" required  placeholder="Sieges_disponibles..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="exampleFormControlInput1" class="form-label ">Price</label>
-                <input name="price" required value="<?=  $data[0]["price"] ?>"  placeholder="Price..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input name="price" required value="<?=  $data[0]->getPrice() ?>"  placeholder="Price..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
           
-   
+            
            
                
               <div class="col-lg-3 mb-4">
               <label for="exampleFormControlTextarea1" class="form-label">Bus</label>
               <select class="form-select" name="ID_Bus" aria-label="Default select example" required>
                 <?php foreach ($Bus as  $value) {   
-                    if ($value["Numero_de_bus"] ===  $data[0]["ID_Bus"]) {
+                    if ($value->getNumero_de_bus() ===  $data[0]->getID_Bus()) {
 
-                      $busNumber = $value["busNumber"] ;
-                      $Numero_de_bus = $value["Numero_de_bus"] ;
+                      $busNumber = $value->getBusNumber() ;
+                      $Numero_de_bus = $value->getNumero_de_bus() ;
                       continue ;
                     }
                    ?>
 
-                <option value="<?=  $value['Numero_de_bus'] ?>"><?= $value['busNumber'] ?></option>
+                <option value="<?=  $value->getNumero_de_bus() ?>"><?= $value->getBusNumber() ?></option>
                
                 <?php   } 
                  ?>
@@ -104,16 +104,16 @@
               <div class="col-lg-3 mb-4">
               <label for="exampleFormControlTextarea1" class="form-label">route</label>
               <select class="form-select" name="ID_Route" aria-label="Default select example" required>
-                <option value="<?=  $data[0]["ID_Route"]  ?>" selected><?=  $data[0]["ID_Route"]  ?></option>
+                <option value="<?=  $data[0]->getID_Route()  ?>" selected><?=  $data[0]->getID_Route()  ?></option>
                 <?php foreach ($route as  $value) {    ;?>
                   <?php 
                 
-                if ($value["ID"] ===  $data[0]["ID_Route"]) 
+                if ($value->getID() ===  $data[0]->getID_Route()) 
                continue;
                  
               ?>
                   
-                <option  value="<?=  $value['ID'] ?>"><?= $value['ID'] ?></option>
+                <option  value="<?=  $value->getID() ?>"><?= $value->getID() ?></option>
                
                 <?php   }  ?>
               </select>

@@ -49,6 +49,7 @@ class controller_Compant {
         $AdminCompany = new AdminCompany() ; 
 
              $data =  $AdminCompany->getByIdCompany($id) ; 
+            //  print_r($data) ;
              require_once  'View\admin\dash_Company\updateCompany.php';
 
        

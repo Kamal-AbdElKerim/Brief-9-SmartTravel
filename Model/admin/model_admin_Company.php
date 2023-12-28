@@ -8,25 +8,19 @@
 
 class AdminCompany extends Database {
 
-  
- private $id ; 
- private $name ; 
- private $Bio ; 
-
-
-
-
-
-
 
     public function getAllCompany(){
 
         $consulta = $this->getConnection()->prepare("SELECT * FROM  Company" );
         $consulta->execute();
         $resultados = $consulta->fetchAll();
-       
-        return $resultados;
 
+        $Company = array(); 
+        foreach ($resultados as $B) {
+            $Company[] = new admin_Company($B["id"],$B["name"],$B["Bio"], $B["img"]);
+        }
+        return $Company;
+       
     }
 
     
@@ -37,9 +31,13 @@ class AdminCompany extends Database {
             "id" => $id
         ));
         /* Fetch all of the remaining rows in the result set */
-        $resultados = $consulta->fetchAll();
-       
-        return $resultados;
+        $resultados = $consulta->fetch();
+
+        $Company = array(); 
+     
+            $Company[] = new admin_Company($resultados["id"],$resultados["name"],$resultados["Bio"], $resultados["img"]);
+      
+        return $Company;
     }
     
     public function getByColumnCompany($column,$value){
@@ -48,9 +46,14 @@ class AdminCompany extends Database {
         $consulta->execute(array(
             "value" => $value
         ));
-        $resultados = $consulta->fetchAll();
+        $resultados = $consulta->fetch();
        
-        return $resultados;
+        $Company = array(); 
+
+     
+        $Company[] = new admin_Company($resultados["id"],$resultados["name"],$resultados["Bio"], $resultados["img"]);
+  
+    return $Company;
     }
     
     public function deleteByIdCompany($id){
@@ -125,53 +128,7 @@ class AdminCompany extends Database {
 
 
 
- /**
-  * Get the value of id
-  */ 
- public function getId()
- {
-  return $this->id;
- }
-
- /**
-  * Get the value of name
-  */ 
- public function getName()
- {
-  return $this->name;
- }
-
- /**
-  * Set the value of name
-  *
-  * @return  self
-  */ 
- public function setName($name)
- {
-  $this->name = $name;
-
-  return $this;
- }
-
- /**
-  * Get the value of Bio
-  */ 
- public function getBio()
- {
-  return $this->Bio;
- }
-
- /**
-  * Set the value of Bio
-  *
-  * @return  self
-  */ 
- public function setBio($Bio)
- {
-  $this->Bio = $Bio;
-
-  return $this;
- }
+ 
 }
 
 

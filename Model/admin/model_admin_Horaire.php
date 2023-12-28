@@ -9,18 +9,6 @@
 
 class Adminhoraire extends Database {
 
-  
- private $ID ; 
- private $Date ; 
- private $Heure_depart ; 
- private $Heure_arrivee ; 
- private $Sieges_disponibles ; 
- private $ID_Bus ; 
- private $ID_Route ; 
- private $price ; 
-
-
-
 
 
 
@@ -29,8 +17,13 @@ class Adminhoraire extends Database {
         $consulta = $this->getConnection()->prepare("SELECT * FROM  horaire" );
         $consulta->execute();
         $resultados = $consulta->fetchAll();
+        $Company = array(); 
+        foreach ($resultados as $B) {  
+            $Company[] = new admin_Horaire($B["ID"],$B["Date"],$B["Heure_depart"], $B["Heure_arrivee"] , $B["Sieges_disponibles"] , $B["ID_Bus"] , $B["ID_Route"] , $B["price"]);
+        }
+        return $Company;
        
-        return $resultados;
+      
 
     }
     public function getAllhoraireJoin(){
@@ -54,9 +47,14 @@ class Adminhoraire extends Database {
             "id" => $id
         ));
         /* Fetch all of the remaining rows in the result set */
-        $resultados = $consulta->fetchAll();
+        $resultados = $consulta->fetch();
+
+        $Company = array(); 
+      
+            $Company[] = new admin_Horaire($resultados["ID"],$resultados["Date"],$resultados["Heure_depart"], $resultados["Heure_arrivee"] , $resultados["Sieges_disponibles"] , $resultados["ID_Bus"] , $resultados["ID_Route"] , $resultados["price"]);
+    
+        return $Company;
        
-        return $resultados;
     }
     
     public function getByColumnhoraire($column,$value){
@@ -65,9 +63,13 @@ class Adminhoraire extends Database {
         $consulta->execute(array(
             "value" => $value
         ));
-        $resultados = $consulta->fetchAll();
+        $resultados = $consulta->fetch();
        
-        return $resultados;
+        $Company = array(); 
+        foreach ($resultados as $B) {  
+            $Company[] = new admin_Horaire($resultados["ID"],$resultados["Date"],$resultados["Heure_depart"], $resultados["Heure_arrivee"] , $resultados["Sieges_disponibles"] , $resultados["ID_Bus"] , $resultados["ID_Route"] , $resultados["price"]);
+        }
+        return $Company;
     }
     
     public function deleteByIdhoraire($id){

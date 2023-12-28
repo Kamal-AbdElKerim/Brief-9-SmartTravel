@@ -31,35 +31,35 @@
               <div class="col-12 col-sm-12  p-5 text-light text-start">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label text-dark ">busNumber</label>
-                <input name="busNumber" required value="<?= $data[0]["busNumber"] ?>" placeholder="busNumber..." type="text" class="form-control " id="exampleFormControlInput1" >
+                <input name="busNumber" required value="<?= $data[0]->getBusNumber() ?>" placeholder="busNumber..." type="text" class="form-control " id="exampleFormControlInput1" >
               </div>
               <div class="mb-3"  style="display: none;">
                 <label for="exampleFormControlInput1" class="form-label text-dark ">Numero_de_bus</label>
-                <input name="Numero_de_bus" required value="<?= $data[0]["Numero_de_bus"] ?>" placeholder="busNumber..." type="text" class="form-control " id="exampleFormControlInput1" >
+                <input name="Numero_de_bus" required value="<?= $data[0]->getNumero_de_bus() ?>" placeholder="busNumber..." type="text" class="form-control " id="exampleFormControlInput1" >
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label text-dark ">Plaque_immatriculation</label>
-                <input name="Plaque_immatriculation" required value="<?= $data[0]["Plaque_immatriculation"] ?>" placeholder="Plaque_immatriculation..." type="text" class="form-control " id="exampleFormControlInput1" >
+                <input name="Plaque_immatriculation" required value="<?= $data[0]->getPlaque_immatriculation() ?>" placeholder="Plaque_immatriculation..." type="text" class="form-control " id="exampleFormControlInput1" >
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label text-dark ">Capacite</label>
-                <input name="Capacite" required value="<?= $data[0]["Capacite"] ?>" placeholder="Capacite..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input name="Capacite" required value="<?= $data[0]->getCapacite() ?>" placeholder="Capacite..." type="number" class="form-control " id="exampleFormControlInput1" >
               </div>
               <div class="col-lg-3 mb-4">
               <label for="exampleFormControlTextarea1" class="form-label text-dark">Company</label>
            
               <select class="form-select" name="Company_id" aria-label="Default select example">
               
-           
-              <option value="<?= $CompanyName[0]["id"] ?>" selected><?= $CompanyName[0]["name"]?></option>
+             <?php print_r($CompanyName) ?>
+              <option value="<?= $CompanyName[0]->getId() ?>" selected><?= $CompanyName[0]->getName()?></option>
               <?php foreach ($Company as  $value2) {    ;
                 
-                  if ($value2["name"] ===$CompanyName[0]["name"]) 
+                  if ($value2->getName() ===$CompanyName[0]->getName()) 
                  continue;
                
                 ?>
 
-              <option  value="<?= $value2["id"] ?>"><?= $value2["name"] ?></option>
+              <option  value="<?= $value2->getId() ?>"><?= $value2->getName() ?></option>
              
               <?php   }  ?>
             </select>

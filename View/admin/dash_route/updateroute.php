@@ -33,7 +33,7 @@
 										<label for="#" class="form-label">Ville_depart</label>
 
 										<select name="depart" class="form-control select2 ">
-										<option selected><?= $data[0]["Ville_depart"] ?></option>
+										<option selected><?= $data[0]->getVille_depart()  ?></option>
 											<?php foreach ($city as $value) { 	 ?>
 											
 										
@@ -49,7 +49,7 @@
               <label for="#" class="form-label">Ville_destination</label>
 
                         <select name="destination" class="form-control select2 ">
-                        <option selected><?= $data[0]["Ville_destination"] ?></option>
+                        <option selected><?= $data[0]->getVille_destination() ?></option>
                           <?php foreach ($city as $value) { 	 ?>
                           
 
@@ -58,21 +58,22 @@
 
                         <?php }?>
                         </select>
+                
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="exampleFormControlInput1" class="form-label ">Distance</label>
-                <input name="Distance" required value="<?= $data[0]["Distance"] ?>" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input name="Distance" required value="<?= $data[0]->getDistance() ?>" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
               <div class="mb-3 col-sm-3" style="display: none;">
               <label for="exampleFormControlInput1" class="form-label ">id</label>
-                <input name="ID" required value="<?= $data[0]["ID"] ?>" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input name="ID" required value="<?= $data[0]->getId() ?>" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
               <div class="mb-3 col-sm-3">
               <label for="exampleFormControlInput1" class="form-label ">Duree</label>
-                <input name="Duree" required value="<?= $data[0]["Duree"] ?>" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
+                <input name="Duree" required value="<?= $data[0]->getDuree() ?>" placeholder="Distance..." type="number" class="form-control " id="exampleFormControlInput1" >
 
               </div>
    
@@ -109,18 +110,20 @@
                 <tbody class="table-group-divider">
                   <?php foreach ($route as  $value) {   ?>
 
+                    
+
                       
                     <tr>
-                    <td ><?=   $value['Ville_depart']  ?></td>
-                    <th  scope="row"><?=    $value['Ville_destination']  ?></th>
-                    <td ><?= $value['Distance'] ?></td>
-                    <td ><?= $value['Duree'] ?></td>
+                    <td ><?=   $value->getVille_depart()   ?></td>
+                    <th  scope="row"><?=    $value->getVille_destination() ?></th>
+                    <td ><?= $value->getDistance() ?></td>
+                    <td ><?= $value->getDuree() ?></td>
              
                   
                     <td >
-                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateBus&id=<?= $value['ID'] ?>">update</a>
+                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateBus&id=<?= $value->getID() ?>">update</a>
 
-                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value['ID'] ?>" data-bs-name="this horaire" href="#">delete</a>
+                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value->getID() ?>" data-bs-name="this horaire" href="#">delete</a>
 
                     </td>
                     </tr>

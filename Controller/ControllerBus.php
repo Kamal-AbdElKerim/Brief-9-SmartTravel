@@ -11,6 +11,8 @@ class controller_Bus {
         $Company =   $AdminCompany->getAllCompany() ; 
         $AdminBus = new AdminBus() ; 
         $Bus =   $AdminBus->getAllBus() ; 
+
+       
     
         include_once "View/admin/dash_Bus/afficheBus.php" ;
     }
@@ -40,7 +42,7 @@ class controller_Bus {
         $AdminBus = new AdminBus() ; 
 
              $data =  $AdminBus->getByIdBus($id) ; 
-             $CompanyID  = $data[0]['Company_id'];
+             $CompanyID  = $data[0]->getCompany_id();
              $CompanyName =   $AdminCompany->getByColumnCompany("id",  $CompanyID) ; 
 
              require_once  'View\admin\dash_Bus\updateBus.php';

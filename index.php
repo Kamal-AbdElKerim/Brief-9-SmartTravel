@@ -1,5 +1,12 @@
 <?php 
- 
+ include "Model\admin_class\class_admin_Bus.php" ;
+ include "Model\admin_class\class_admin_Company.php" ;
+ include "Model\admin_class\class_admin_Horaire.php" ;
+ include_once "Model\admin_class\class_admin_route.php" ; 
+
+
+
+
   include_once "Controller\ControllerBus.php" ;
   include_once "Controller\ControllerCompant.php" ;
   include_once "Controller/front/Controller_homepage.php" ;

@@ -127,17 +127,17 @@
 
                       
                     <tr>
-                    <td ><?=   $value['ID']  ?></td>
-                    <td ><?=   $value['Ville_depart']  ?></td>
-                    <th  scope="row"><?=    $value['Ville_destination']  ?></th>
-                    <td ><?= $value['Distance'] ?></td>
-                    <td ><?= $value['Duree'] ?></td>
+                    <td ><?=   $value->getID()  ?></td>
+                    <td ><?=   $value->getVille_depart()  ?></td>
+                    <th  scope="row"><?=    $value->getVille_destination()  ?></th>
+                    <td ><?= $value->getDistance() ?></td>
+                    <td ><?= $value->getDuree() ?></td>
              
                   
                     <td >
-                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=formUpdateRoute&id=<?= $value['ID'] ?>">update</a>
+                    <a class="btn btn-success mb-2 ms-2" href="index.php?action=formUpdateRoute&id=<?= $value->getID() ?>">update</a>
 
-                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value['ID'] ?>" data-bs-name="this horaire" href="#">delete</a>
+                    <a class="btn btn-danger mb-2 ms-2 modal-trigger" data-bs-toggle="modal" data-bs-id="<?= $value->getID() ?>" data-bs-name="this horaire" href="#">delete</a>
 
                     </td>
                     </tr>
