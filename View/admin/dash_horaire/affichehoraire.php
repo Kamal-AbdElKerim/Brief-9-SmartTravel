@@ -95,7 +95,7 @@
                 <option value="null" selected>Choose route</option>
                 <?php foreach ($route as  $value) {    ;?>
 
-                <option value="<?=  $value->getID() ?>"><?= $value->getID() ?></option>
+                  <option value="<?=  $value->getID() ?>"><?= $value->getVille_depart() ." -> ". $value->getVille_destination() ?></option>
                
                 <?php   }  ?>
               </select>
@@ -141,6 +141,12 @@
                          break ;
                       }
                     } 
+                   foreach ($route as  $value1) { 
+                    if ($value1->getID() === $value->getID_Route()) {
+                      $root = $value1->getVille_depart() ." -> ". $value1->getVille_destination() ; 
+                      break ;
+                   }   
+                  } 
                  ?>  
                       
                     <tr>
@@ -150,7 +156,7 @@
                     <td ><?= $value->getSieges_disponibles() ?></td>
                     <td ><?= $value->getPrice() ?></td>
                     <td ><?= $nameBus ?></td>
-                    <td ><?= $value->getID_Route() ?></td>
+                    <td ><?= $root ?></td>
                   
                     <td >
                     <a class="btn btn-success mb-2 ms-2" href="index.php?action=updateHoraire&id=<?= $value->getID() ?>">update</a>

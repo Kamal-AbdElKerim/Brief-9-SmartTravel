@@ -25,7 +25,7 @@
 											<?php foreach ($resultcity as $value) { 	
 												if (isset($_SESSION['saved_array'])) {
 													$array =  $_SESSION['saved_array'] ;
-													if ($value["cityName"] ===  $array["DEPART"]) {
+													if ($value ===  $array["DEPART"]) {
 
 														
 													
@@ -38,7 +38,7 @@
 											
 										
 									
-										<option value="<?= $value["cityName"] ?>"><?= $value["cityName"] ?></option>
+										<option value="<?= $value ?>"><?= $value ?></option>
 
 										<?php }?>
 										</select>

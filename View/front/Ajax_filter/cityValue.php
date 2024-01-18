@@ -27,21 +27,25 @@ class Database {
 
 class homepage  extends Database{
 
-    function homepage()  {
+    // function homepage()  {
       
-      $consulta = $this->getConnection()->prepare("SELECT * FROM  city" );
-      $consulta->execute();
-      $resultcity = $consulta->fetchAll();
+    //   $consulta = $this->getConnection()->prepare("SELECT * FROM  city" );
+    //   $consulta->execute();
+    //   $resultcity = $consulta->fetchAll();
      
  
-      include_once 'View\front\home.php';
-    }
+    //   include_once 'View\front\home.php';
+    // }
 
     function city()  {
+       
       
-      $consulta = $this->getConnection()->prepare("SELECT * FROM  city" );
-      $consulta->execute();
-      $resultcity = $consulta->fetchAll();
+        $jsonData = file_get_contents('../../../cities.json');
+
+        // Decode JSON data
+        $data = json_decode($jsonData, true);
+        $resultcity = $data["cities"] ;
+
      
        return   $resultcity ;
     }
@@ -147,13 +151,13 @@ if (isset($_GET["cityValue"])) {
 <?php 
  foreach ($city as  $value) {
     
- if ($cityValue === $value["cityName"]) {
+ if ($cityValue === $value) {
       continue ;
  } 
 ?>
 	
 
-<option><?= $value["cityName"] ?></option>
+<option><?= $value ?></option>
 
 
 <?php } 

@@ -27,7 +27,7 @@
 											
 										
 									
-										<option value="<?= $value["cityName"] ?>"><?= $value["cityName"] ?></option>
+										<option value="<?= $value ?>"><?= $value ?></option>
 
 										<?php }?>
 										</select>

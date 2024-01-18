@@ -7,19 +7,28 @@
 
       function homepage()  {
         
-        $consulta = $this->getConnection()->prepare("SELECT * FROM  city" );
-        $consulta->execute();
-        $resultcity = $consulta->fetchAll();
-       
+      
+      
+          $jsonData = file_get_contents('cities.json');
+
+          // Decode JSON data
+          $data = json_decode($jsonData, true);
+
+          $resultcity = $data["cities"] ;
+
+     
    
         include_once 'View\front\home.php';
       }
 
       function city()  {
         
-        $consulta = $this->getConnection()->prepare("SELECT * FROM  city" );
-        $consulta->execute();
-        $resultcity = $consulta->fetchAll();
+        $jsonData = file_get_contents('cities.json');
+
+        // Decode JSON data
+        $data = json_decode($jsonData, true);
+        $resultcity = $data["cities"] ;
+
        
          return   $resultcity ;
       }

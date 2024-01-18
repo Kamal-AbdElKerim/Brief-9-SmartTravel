@@ -38,7 +38,7 @@
 											
 										
 									
-										<option><?= $value["cityName"] ?></option>
+										<option><?= $value ?></option>
 
 										<?php }?>
 										</select>
@@ -54,7 +54,7 @@
                           
 
 
-                        <option><?= $value["cityName"] ?></option>
+                        <option><?= $value ?></option>
 
                         <?php }?>
                         </select>

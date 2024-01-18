@@ -104,7 +104,13 @@
               <div class="col-lg-3 mb-4">
               <label for="exampleFormControlTextarea1" class="form-label">route</label>
               <select class="form-select" name="ID_Route" aria-label="Default select example" required>
-                <option value="<?=  $data[0]->getID_Route()  ?>" selected><?=  $data[0]->getID_Route()  ?></option>
+                <?php     foreach ($route as  $value1) { 
+                    if ($value1->getID() === $data[0]->getID_Route()) {
+                      $root = $value1->getVille_depart() ." -> ". $value1->getVille_destination() ; 
+                      break ;
+                   }   
+                  }  ?>
+                <option value="<?=  $data[0]->getID_Route()  ?>" selected><?=   $root ?></option>
                 <?php foreach ($route as  $value) {    ;?>
                   <?php 
                 
@@ -113,7 +119,7 @@
                  
               ?>
                   
-                <option  value="<?=  $value->getID() ?>"><?= $value->getID() ?></option>
+                  <option value="<?=  $value->getID() ?>"><?= $value->getVille_depart() ." -> ". $value->getVille_destination() ?></option>
                
                 <?php   }  ?>
               </select>
